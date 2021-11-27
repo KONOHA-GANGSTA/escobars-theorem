@@ -5,12 +5,24 @@
 #include <string>
 #include <fstream>
 #include <chrono>
+#include "Huffman.h"
 using namespace std;
 
 void printLine() {
     for (int i = 0; i < 25; ++i)
         cout << "_";
     cout << endl;
+}
+
+void getString(string& text,string fileName) {
+
+    ifstream file;
+    file.open(fileName, ios::in);
+    while (!file.eof()) {
+        getline(file, text, '\0');
+    }
+    file.close();
+
 }
 
 
@@ -146,7 +158,7 @@ compression SFencode(map <char, unsigned int> mapOfChars, string& text) {
     auto finish = chrono::system_clock::now();
     auto    duration = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
     MyCompression.encodeDuration = duration;
-    showAlphabet(alphabet);
+    //showAlphabet(alphabet);
     start = chrono::system_clock::now();
     SFdecode(root, MyCompression.code);
     finish = chrono::system_clock::now();
@@ -160,13 +172,9 @@ compression SFencode(map <char, unsigned int> mapOfChars, string& text) {
 int main()
 {
     //setlocale(LC_CTYPE, "rus");
-    ifstream file;
     string longText;
-    file.open("long text.txt",ios::in);
-    while (!file.eof()) {
-        getline(file, longText, '\0');
-    }
-    file.close();
+    getString(longText,"short text.txt");
     SFencode(getMapOfChars(longText), longText).report();
+    buildHuffmanTree(longText);
 
 }
