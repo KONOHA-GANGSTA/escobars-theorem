@@ -6,6 +6,7 @@
 #include <fstream>
 #include <chrono>
 #include "Huffman.h"
+#include "LZW.h"
 using namespace std;
 
 void printLine() {
@@ -174,7 +175,8 @@ int main()
     //setlocale(LC_CTYPE, "rus");
     string longText;
     getString(longText,"short text.txt");
-    SFencode(getMapOfChars(longText), longText).report();
-    buildHuffmanTree(longText);
+    //SFencode(getMapOfChars(longText), longText).report();
+    //buildHuffmanTree(longText);
+    cout<< LZW_decompress(LZW_compress(longText));
 
 }

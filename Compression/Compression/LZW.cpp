@@ -38,7 +38,7 @@ string LZW_compress(string input) {
         }
     }
     if (current_string.size())
-        result = convert_int_to_bin(compress_dictionary[current_string]);
+        result = result+ convert_int_to_bin(compress_dictionary[current_string]);
 
     return result;
 }
@@ -55,7 +55,7 @@ string LZW_decompress(string input) {
     string result;
     unsigned int code;
     unsigned int next_code = 256;
-    size = input.size();
+    int size = input.size();
 
     int i = 0;
     while (i < size) {

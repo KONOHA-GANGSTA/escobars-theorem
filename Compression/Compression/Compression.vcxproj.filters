@@ -21,9 +21,15 @@
     <ClCompile Include="Huffman.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="LZW.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Huffman.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="LZW.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
