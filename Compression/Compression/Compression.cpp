@@ -58,9 +58,9 @@ struct compression {
         cout << "Encoded Text:" << endl;
         cout << this->code << endl;
         printLine();
-        cout << "Compression time: " << this->encodeDuration << " ms" << endl;
+        cout << "Compression time: " << this->encodeDuration << " mks" << endl;
         printLine();
-        cout << "Decompression time: " << this->decodeDuration << " ms" << endl;
+        cout << "Decompression time: " << this->decodeDuration << " mks" << endl;
         printLine();
         cout << "Compression coefficient: ";
         this->coef = (double)(this->text.size() * 8) / this->code.size();
@@ -156,13 +156,13 @@ compression SFencode(map <char, unsigned int> mapOfChars, string& text) {
         }
     }
     auto finish = chrono::system_clock::now();
-    auto    duration = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+    auto    duration = chrono::duration_cast<chrono::microseconds>(finish - start).count();
     MyCompression.encodeDuration = duration;
     //showAlphabet(alphabet);
     start = chrono::system_clock::now();
     SFdecode(root, MyCompression.code);
     finish = chrono::system_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+    duration = chrono::duration_cast<chrono::microseconds>(finish - start).count();
     MyCompression.decodeDuration = duration;
     return MyCompression;
 }
@@ -176,5 +176,4 @@ int main()
     getString(longText,"short text.txt");
     SFencode(getMapOfChars(longText), longText).report();
     buildHuffmanTree(longText);
-
 }
