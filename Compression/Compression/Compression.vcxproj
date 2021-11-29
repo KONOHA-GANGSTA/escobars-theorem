@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="Compression.cpp" />
     <ClCompile Include="Huffman.cpp" />
+    <ClCompile Include="LZW.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Huffman.h" />
+    <ClInclude Include="LZW.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
