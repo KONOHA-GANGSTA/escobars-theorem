@@ -25,11 +25,3 @@ string encode(string str)
     return encoding;
 }
  
-int main()
-{
-    string str = "ABBCCCD";
- 
-    cout << encode(str);
- 
-    return 0;
-}
