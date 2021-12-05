@@ -50,6 +50,6 @@ map <char, unsigned int> getMapOfChars(string& text);
 
 void splitNode(node& root, map <char, vector <bool>>& alphabet);
 
-void SFdecode(node& tree, string& code);
+string SFdecode(node& tree, string& code);
 
 compression SFencode(map <char, unsigned int> mapOfChars, string& text);

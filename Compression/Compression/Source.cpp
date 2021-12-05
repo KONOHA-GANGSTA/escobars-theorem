@@ -58,8 +58,9 @@ void splitNode(node& root, map <char, vector <bool>>& alphabet) {
         splitNode(*root.rightBranch, alphabet);
 }
 
-void SFdecode(node& tree, string& code) {
+string SFdecode(node& tree, string& code) {
     node uzel = tree;
+    string result;
     for (char& i : code)
         if ((i == char(48)) & (uzel.leftBranch != NULL)) {
             uzel = *uzel.leftBranch;
@@ -73,10 +74,11 @@ void SFdecode(node& tree, string& code) {
             uzel = *uzel.rightBranch;
             if ((uzel.leftBranch == NULL) & (uzel.rightBranch == NULL)) {
                 for (auto& j : uzel.group)
-                    cout << j.second;
+                    result.push_back(j.second);
                 uzel = tree;
             }
         }
+    return result;
 }
 
 compression SFencode(map <char, unsigned int> mapOfChars, string& text) {

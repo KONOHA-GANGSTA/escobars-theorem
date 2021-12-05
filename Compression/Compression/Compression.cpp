@@ -7,7 +7,7 @@
 #include <chrono>
 #include "Huffman.h"
 #include "LZW.h"
-#include "RLE.h"
+//#include "RLE.h"
 #include "ShannonFano.h"
 using namespace std;
 
