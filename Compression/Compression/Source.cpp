@@ -1,12 +1,6 @@
 #include "ShannonFano.h"
 #include <chrono>
 
-void printLine() {
-    for (int i = 0; i < 25; ++i)
-        cout << "_";
-    cout << endl;
-}
-
 void showAlphabet(map <char, vector<bool>> alphabet) {
     for (auto& i : alphabet) {
         cout << i.first << " : ";
@@ -66,7 +60,7 @@ string SFdecode(node& tree, string& code) {
             uzel = *uzel.leftBranch;
             if ((uzel.leftBranch == NULL) & (uzel.rightBranch == NULL)) {
                 for (auto& j : uzel.group)
-                    cout << j.second;
+                    result.push_back(j.second);
                 uzel = tree;
             }
         }
@@ -81,10 +75,11 @@ string SFdecode(node& tree, string& code) {
     return result;
 }
 
-compression SFencode(map <char, unsigned int> mapOfChars, string& text) {
+void SFencode(string& text) {
     compression MyCompression;
+    map <char, unsigned int> mapOfChars = getMapOfChars(text);
     MyCompression.name = "Shannon-Fano";
-    MyCompression.text = text;
+    MyCompression.textSize = text.size();
     auto start = chrono::system_clock::now();
     multimap <double, char, greater<double>> mapOfProbability;
     map <char, vector <bool>> alphabet;
@@ -107,9 +102,9 @@ compression SFencode(map <char, unsigned int> mapOfChars, string& text) {
     MyCompression.encodeDuration = duration;
     //showAlphabet(alphabet);
     start = chrono::system_clock::now();
-    SFdecode(root, MyCompression.code);
+    MyCompression.decodedText = SFdecode(root, MyCompression.code);
     finish = chrono::system_clock::now();
     duration = chrono::duration_cast<chrono::microseconds>(finish - start).count();
     MyCompression.decodeDuration = duration;
-    return MyCompression;
+    MyCompression.report(8);
 }

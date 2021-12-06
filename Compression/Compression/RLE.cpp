@@ -45,7 +45,7 @@ string RLEcompress(string& text) {
 			continue;
 		}
 
-		if (currentString[currentString.size()-1] == ochered.front()) { /
+		if (currentString[currentString.size()-1] == ochered.front()) { 
 			if (repMark == false) { 
 				count++;
 			}
@@ -90,7 +90,7 @@ string RLEcompress(string& text) {
 	return result;
 }
 
-string RLEdecompress(string code) {
+string RLEdecompress(string& code) {
 	string number;
 	number.reserve(3);
 	string currentString;

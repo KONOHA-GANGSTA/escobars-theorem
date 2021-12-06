@@ -8,5 +8,5 @@ bool checkNext(queue <char>& ochered);
 
 string RLEcompress(string& text);
 
-string RLEdecompress(string code);
+string RLEdecompress(string& code);
 

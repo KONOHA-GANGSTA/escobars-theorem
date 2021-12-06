@@ -16,7 +16,7 @@ string convert_int_to_bin(int number)
     return result;
 }
 
-string LZW_compress(string input) {
+string LZW_compress(string& input) {
     unordered_map<string, int> compress_dictionary(MAX_DEF);
     //Dictionary initializing with ASCII
     for (int unsigned i = 0; i < 256; i++) {
@@ -45,7 +45,7 @@ string LZW_compress(string input) {
 
 
 
-string LZW_decompress(string input) {
+string LZW_decompress(string& input) {
     unordered_map<unsigned int, string> dictionary(MAX_DEF);
     //Dictionary initializing with ASCII
     for (int unsigned i = 0; i < 256; i++) {

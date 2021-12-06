@@ -14,4 +14,4 @@ void encode(Node* root, string str,
 
 void decode(Node* root, int& index, string str);
 
-void buildHuffmanTree(string text);
+void buildHuffmanTree(string& text);

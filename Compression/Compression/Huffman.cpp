@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <chrono>
 #include "Huffman.h"
+#include <iomanip>
 
 using namespace std;
 using namespace std::chrono;
@@ -71,7 +72,7 @@ void decode(Node* root, int &index, string str)
 
 }
 
-void buildHuffmanTree(string text)
+void buildHuffmanTree(string& text)
 {
 	auto original_size = text.length()*8;
 	auto start = system_clock::now();
@@ -104,11 +105,11 @@ void buildHuffmanTree(string text)
 	for (char ch: text) {
 		str += huffmanCode[ch];
 	}
-
+    auto finish = system_clock::now();
 	cout << "\nEncoded string is :\n" << str << '\n';
-	auto finish = system_clock::now();
+	
 	auto duration = duration_cast<microseconds>(finish - start).count();
-	cout << "\nEncoding time is :\n" << duration << endl;
+	cout << "\nEncoding time is :\n" << duration << " mks" << endl;
 	int encoded_size = str.length();
 
 	start = system_clock::now();
@@ -119,7 +120,7 @@ void buildHuffmanTree(string text)
 	}
 	finish = system_clock::now();
 	duration = duration_cast<microseconds>(finish - start).count();
-	cout << "\n\nDecoding time is :\n" << duration << endl;
+	cout << "\n\nDecoding time is :\n" << duration << " mks" << endl;
 	float coef = static_cast<float>(original_size) / encoded_size;
-	cout << "\nCompression coefficient is :\n" << coef << endl;
+	cout << "\nCompression coefficient is :\n" << setiosflags(ios::fixed) << setprecision(2) << coef << endl;
 }
