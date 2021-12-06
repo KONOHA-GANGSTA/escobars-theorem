@@ -12,6 +12,6 @@ struct comp;
 void encode(Node* root, string str,
 	unordered_map<char, string>& huffmanCode);
 
-void decode(Node* root, int& index, string str);
+void decode(Node* root, int& index, string str, string &decoded);
 
 void buildHuffmanTree(string& text);

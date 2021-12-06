@@ -50,7 +50,7 @@ void encode(Node* root, string str,
 	encode(root->right, str + "1", huffmanCode);
 }
 
-void decode(Node* root, int &index, string str)
+void decode(Node* root, int &index, string str, string &decoded)
 {
 	if (root == nullptr) {
 		return;
@@ -58,16 +58,16 @@ void decode(Node* root, int &index, string str)
 
 	if (!root->left && !root->right)
 	{
-		cout << root->ch;
+		decoded += root->ch;
 		return;
 	}
 
 	index++;
 
 	if (str[index] =='0')
-		decode(root->left, index, str);
+		decode(root->left, index, str, decoded);
 	else
-		decode(root->right, index, str);
+		decode(root->right, index, str, decoded);
 
 
 }
@@ -112,14 +112,16 @@ void buildHuffmanTree(string& text)
 	cout << "\nEncoding time is :\n" << duration << " mks" << endl;
 	int encoded_size = str.length();
 
-	start = system_clock::now();
+	string decoded;
 	int index = -1;
 	cout << "\nDecoded string is: \n";
+	start = system_clock::now();
 	while (index < (int)str.size() - 2) {
-		decode(root, index, str);
+		decode(root, index, str, decoded);
 	}
 	finish = system_clock::now();
 	duration = duration_cast<microseconds>(finish - start).count();
+	cout << decoded;
 	cout << "\n\nDecoding time is :\n" << duration << " mks" << endl;
 	float coef = static_cast<float>(original_size) / encoded_size;
 	cout << "\nCompression coefficient is :\n" << setiosflags(ios::fixed) << setprecision(2) << coef << endl;
